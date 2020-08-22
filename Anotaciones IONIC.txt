@@ -1,0 +1,42 @@
+****************** SECCIÓN 2 ******************
+ESTRUCTURA DE PROYECTO:
+carpeta e2e 		= 			carpeta destinada para hacer pruebas de punto a punto, android o ios o pwa
+node_modules 		= 			ubicación de los archivos necesarios de node para hacer funcionar la aplicación (todas las dependencias)
+src 			= 			codigo fuente de aplicación
+	app		=			se creará todo lo relacionado a lo visual, servicios	
+.gitignore		= 			listado de archivos o carpetas que no suben a git
+angular.json		=			configuraciones y deficiones para hacer funcionar angular
+ionic.config.json	= 			descripción sobre los datos de la aplicación
+package-lock.json	= 			dice como se contruyo el package.json
+package.json		=			dependencias de proyecto y desarrollo
+tsconfig.json		=			archivo de configuración de typescript
+tslint.json		=			reglas para escribir código más limpio de typescript
+
+****************** SECCIÓN 3 ******************
+REFORZAMIENTO
+para poder recibir la información de lo que hará un comando de angular utilizar al final:
+ng g c pages/componente --dry-run
+
+LAZY LOAD (carga perezoza)
+para crear un modulo nuevo y con rutas se utiliza:
+ng g m ruta/nombre --routing
+
+****************** SECCIÓN 4 ******************
+BASES DE IONIC
+ion-content: es donde se coloca todo el código que se quiere visualizar en la página
+
+
+
+
+
+
+ELEMENTOS IONIC
+ion-header
+ion-toolbar
+ion-buttons
+ion-back-button
+ion-title
+ion-content
+ion-list
+ion-item
+ion-label
