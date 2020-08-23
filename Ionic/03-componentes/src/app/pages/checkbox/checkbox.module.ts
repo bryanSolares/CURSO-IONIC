@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InicioPageRoutingModule } from './inicio-routing.module';
+import { CheckboxPageRoutingModule } from './checkbox-routing.module';
 
-import { InicioPage } from './inicio.page';
+import { CheckboxPage } from './checkbox.page';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from '../../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule,
+    CheckboxPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [InicioPage]
+  declarations: [CheckboxPage]
 })
-export class InicioPageModule {}
+export class CheckboxPageModule {}

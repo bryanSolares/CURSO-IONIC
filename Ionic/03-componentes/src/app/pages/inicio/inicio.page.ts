@@ -1,5 +1,4 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { Interface } from 'readline';
 
 @Component({
   selector: 'app-inicio',
@@ -7,28 +6,45 @@ import { Interface } from 'readline';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
-
-  componentes: Componente [] = [
+  componentes: Componente[] = [
     {
-    icon: 'american-football',
-    name: 'Action Sheet',
-    redirecTo: '/action-sheet'  
-  },
-  {
-    icon: 'logo-apple-appstore',
-    name: 'Alert',
-    redirecTo: '/alert' 
-  }
-  ]
+      icon: 'american-football',
+      name: 'Action Sheet',
+      redirecTo: '/action-sheet',
+    },
+    {
+      icon: 'logo-apple-appstore',
+      name: 'Alert',
+      redirecTo: '/alert',
+    },
+    {
+      icon: 'beaker',
+      name: 'Avatar',
+      redirecTo: '/avatar',
+    },
+    {
+      icon: 'radio-button-on',
+      name: 'Button',
+      redirecTo: '/button',
+    },
+    {
+      icon: 'card',
+      name: 'Cards',
+      redirecTo: '/card',
+    },
+    {
+      icon: 'checkmark-circle-outline',
+      name: 'Checkbox',
+      redirecTo: '/checkbox',
+    }
+  ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 
-interface Componente{
+interface Componente {
   icon: string;
   name: string;
   redirecTo: string;
