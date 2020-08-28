@@ -25,6 +25,9 @@ ng g m ruta/nombre --routing
 BASES DE IONIC
 ion-content: es donde se coloca todo el código que se quiere visualizar en la página
 
+para tomar un elemente del HTML desde el .ts:
+@ViweChild(IonInfiniteScroll) nombre: IonInfiniteScroll
+
 
 
 
