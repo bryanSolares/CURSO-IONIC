@@ -1,0 +1,14 @@
+sudo npm install -g ios-deploy --unsafe-perm=true
+
+ionic cordova run --list
+
+
+ionic cordova emulate ios --debug --target "iPhone-XXXXXX" 
+
+
+ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
+
+ionic cordova emulate ios -- --buildFlag="-UseModernBuildSystem=0"
+
+ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0" -l
+
