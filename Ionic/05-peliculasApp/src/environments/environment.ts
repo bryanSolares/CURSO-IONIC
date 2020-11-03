@@ -4,12 +4,9 @@
 
 export const environment = {
   production: false,
-  apiKey: 'fe67bda7b02bb6b8b3b59457e29221bb',
-  urlApi: 'https://api.themoviedb.org/3',
-  imgPath: 'https://image.tmdb.org/t/p',
-  pathNoImg: 'assets/imgs/no-image-banner.jpg',
-  lgApi: 'es',
-  lgApiImg: 'es'
+  URL: "https://api.themoviedb.org/3",
+  API_KEY: "fe67bda7b02bb6b8b3b59457e29221bb",
+  IMG_PATH: "https://image.tmdb.org/t/p",
 };
 
 /*

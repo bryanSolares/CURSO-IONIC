@@ -1,22 +1,19 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Pipe, PipeTransform } from "@angular/core";
+import { environment } from "../../environments/environment";
 
-const urlImg = environment.imgPath;
-const noImg = environment.pathNoImg;
+const imgURL = environment.IMG_PATH;
 
 @Pipe({
-  name: 'imagen'
+  name: "imagen",
 })
 export class ImagenPipe implements PipeTransform {
+  // w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
 
-  transform(path: string, size: string = 'w500'): string {
-    if (!path) {
-      return noImg;
+  transform(img: string, size: string = "w500"): string {
+    if (!img) {
+      return "./assets/no-image-banner.jpg";
     }
 
-    const imgURL = `${urlImg}/${size}${path}`;
-    console.log(imgURL);
-    return imgURL;
+    return `${imgURL}/${size}${img}`;
   }
-
 }

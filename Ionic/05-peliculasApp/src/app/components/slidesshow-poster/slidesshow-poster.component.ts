@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import { Movie } from "src/app/interfaces/interfaces";
+
 import { DetalleComponent } from "../detalle/detalle.component";
+import { Movie } from "./../../interfaces/interfaces";
 
 @Component({
-  selector: "app-slideshow-backdrop",
-  templateUrl: "./slideshow-backdrop.component.html",
-  styleUrls: ["./slideshow-backdrop.component.scss"],
+  selector: "app-slidesshow-poster",
+  templateUrl: "./slidesshow-poster.component.html",
+  styleUrls: ["./slidesshow-poster.component.scss"],
 })
-export class SlideshowBackdropComponent implements OnInit {
+export class SlidesshowPosterComponent implements OnInit {
   @Input() peliculas: Movie[] = [];
   slidesOpts = {
-    slidesPerView: 1.3,
+    slidesPerView: 3.3,
     freeMode: true,
   };
 

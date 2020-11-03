@@ -1,7 +1,5 @@
-<ion-slides [options]="slidesOpt">
-  <ion-slide *ngFor="let pelicula of peliculasRecientes">
-    <ion-card>
-      <img [src]="pelicula.backdrop_path | imagen" [alt]="pelicula.title">
-    </ion-card>
+<ion-slides [options]="slidesOpts">
+  <ion-slide *ngFor="let pelicula of peliculas">
+    <ion-card (click)="mostraDetalle(pelicula)"><img [src]="pelicula.backdrop_path | imagen" [alt]="pelicula.title" /></ion-card>
   </ion-slide>
 </ion-slides>
