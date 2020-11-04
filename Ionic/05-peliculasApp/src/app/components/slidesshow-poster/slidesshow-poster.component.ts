@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 
 import { DetalleComponent } from "../detalle/detalle.component";
@@ -11,6 +11,7 @@ import { Movie } from "./../../interfaces/interfaces";
 })
 export class SlidesshowPosterComponent implements OnInit {
   @Input() peliculas: Movie[] = [];
+  @Output() close = new EventEmitter();
   slidesOpts = {
     slidesPerView: 3.3,
     freeMode: true,
@@ -26,6 +27,10 @@ export class SlidesshowPosterComponent implements OnInit {
       componentProps: {
         id: pelicula.id,
       },
+    });
+
+    modal.onDidDismiss().then((data) => {
+      this.close.emit();
     });
 
     modal.present();

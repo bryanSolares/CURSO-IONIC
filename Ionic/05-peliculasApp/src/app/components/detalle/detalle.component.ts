@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { MoviesService } from "../../services/movies.service";
-import { MovieDetail, ResultCredits, Cast } from '../../interfaces/interfaces';
-import { ModalController } from '@ionic/angular';
+import { MovieDetail, ResultCredits, Cast } from "../../interfaces/interfaces";
+import { ModalController, ToastController } from "@ionic/angular";
+import { DataLocalService } from "../../services/data-local.service";
+import { duration } from "moment";
 
 @Component({
   selector: "app-detalle",
@@ -16,12 +18,20 @@ export class DetalleComponent implements OnInit {
   slideActors = {
     slidesPerView: 3.3,
     freeMode: true,
-    spaceBetween: -5
-  }
+    spaceBetween: -5,
+  };
+  star = "";
 
-  constructor(private moviesServices: MoviesService, private modalControler: ModalController) {}
+  constructor(
+    private moviesServices: MoviesService,
+    private dataLocalService: DataLocalService,
+    private modalControler: ModalController,
+    private toasController: ToastController
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.dataLocalService.existePelicula(this.id).then((existe) => (this.star = existe ? "star" : "star-outline"));
+
     this.moviesServices.getDetailMovie(this.id).subscribe((response) => {
       this.detallePelicula = response;
     });
@@ -31,11 +41,18 @@ export class DetalleComponent implements OnInit {
     });
   }
 
-  regresar(){
+  regresar() {
     this.modalControler.dismiss();
   }
 
-  favorito(){
-    
+  async favorito() {
+    const resultadoStorage = this.dataLocalService.guardarPelicula(this.detallePelicula);
+    const toast = await this.toasController.create({
+      message: resultadoStorage[0],
+      duration: 2000,
+      //<position: "top",
+    });
+    toast.present();
+    this.star = resultadoStorage[1] ? "star" : "star-outline";
   }
 }

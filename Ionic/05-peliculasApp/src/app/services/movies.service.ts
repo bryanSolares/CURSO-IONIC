@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import * as moment from "moment";
 import { environment } from "../../environments/environment";
 
-import { ResponseMBD } from "../interfaces/interfaces";
+import { ResponseMBD, Genre } from '../interfaces/interfaces';
 import { MovieDetail } from "../interfaces/interfaces";
 import { ResultCredits } from "../interfaces/interfaces";
 
@@ -18,6 +18,7 @@ export class MoviesService {
   // https://api.themoviedb.org/3/discover/movie?api_key=fe67bda7b02bb6b8b3b59457e29221bb&primary_release_date.gte=2020-01-01&primary_release_date.lte=2020-10-22&language=es&include_image_language=es
 
   private paginaPopulares = 0;
+  private genres: Genre[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -48,7 +49,16 @@ export class MoviesService {
     return this.executeQuery<ResultCredits>(`/movie/${id}/credits?a=1`);
   }
 
-  getSearchMovie(pelicula: string){
+  getSearchMovie(pelicula: string) {
     return this.executeQuery<ResponseMBD>(`/search/movie?query=${pelicula}`);
+  }
+
+  getGenrs(): Promise<Genre[]> {
+    return new Promise((resolve) => {
+      this.executeQuery(`/genre/movie/list?a=1`).subscribe((response: any) => {
+        this.genres = response["genres"];
+        resolve(this.genres);
+      });
+    });
   }
 }
