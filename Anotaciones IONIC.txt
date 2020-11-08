@@ -40,8 +40,6 @@ firebase init
 firebase deploy
 
 
-
-
 ELEMENTOS IONIC
 ion-header
 ion-toolbar
@@ -52,3 +50,6 @@ ion-content
 ion-list
 ion-item
 ion-label
+
+****************** SECCIÓN 11 ******************
+ciclo de vida de angular se puede aplicar en ionic
