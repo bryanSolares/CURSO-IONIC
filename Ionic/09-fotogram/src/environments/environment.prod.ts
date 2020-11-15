@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpoint: "http://192.168.1.6:3000",
+  endpoint: "http://192.168.1.9:3000",
 };
