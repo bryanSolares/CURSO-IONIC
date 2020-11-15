@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { AlertController } from "@ionic/angular";
+import { AlertController, ToastController } from "@ionic/angular";
 
 @Injectable({
   providedIn: "root",
 })
 export class UIServiceService {
-  constructor(private alertController: AlertController) {}
+  constructor(private alertController: AlertController, private toastController: ToastController) {}
 
   async alertaInformativa(message: string) {
     const alert = await this.alertController.create({
@@ -15,5 +15,15 @@ export class UIServiceService {
     });
 
     await alert.present();
+  }
+
+  async alertaInformativaToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      position: 'top',
+      duration: 1500,
+    });
+
+    toast.present();
   }
 }

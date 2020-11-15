@@ -13,7 +13,7 @@ const endPointBase = environment.endpoint;
 })
 export class UsuarioService {
   token: string = null;
-  user: User;
+  private user: User;
   constructor(private http: HttpClient, private storage: Storage, private navController: NavController) {}
 
   login(dataUser: { email: string; password: string }) {
@@ -43,7 +43,6 @@ export class UsuarioService {
     return new Promise<boolean>((resolve) => {
       const headers = new HttpHeaders({ "x-token": this.token });
       return this.http.get(`${endPointBase}/user`, { headers }).subscribe((response: any) => {
-        //response.ok ? (this.user = response.user) : (this.user = null), this.navController.navigateRoot("/login");
         if (response.ok) {
           this.user = response.user;
           resolve(true);
@@ -52,6 +51,37 @@ export class UsuarioService {
         }
       });
     });
+  }
+
+  updateUser(dataUser: User) {
+    const headers = new HttpHeaders({
+      "x-token": this.token,
+    });
+
+    return new Promise((resolve) => {
+      this.http.post(`${endPointBase}/user/update`, dataUser, { headers }).subscribe((response: any) => {
+        if (response.ok) {
+          this.saveToken(response.token);
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+
+  logout() {
+    this.storage.clear();
+    this.token = "";
+    this.user = null;
+    this.navController.navigateRoot("/login");
+  }
+
+  getUsuario() {
+    if (!this.user._id) {
+      this.validateToken();
+    }
+    return { ...this.user };
   }
 
   async loadToken() {
