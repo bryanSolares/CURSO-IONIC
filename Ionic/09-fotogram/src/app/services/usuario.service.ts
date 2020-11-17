@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { environment } from "./../../environments/environment";
 import { User } from "../interfaces/interfaces";
 import { NavController } from "@ionic/angular";
+import { async } from "@angular/core/testing";
 
 const endPointBase = environment.endpoint;
 
@@ -18,17 +19,23 @@ export class UsuarioService {
 
   login(dataUser: { email: string; password: string }) {
     return new Promise((resolve) => {
-      return this.http.post(`${endPointBase}/user/login`, dataUser).subscribe((response: any) => {
-        response.ok ? this.saveToken(response.token) : (this.token = null), this.storage.clear();
-        resolve(response.ok);
+      return this.http.post(`${endPointBase}/user/login`, dataUser).subscribe(async (response: any) => {
+        if (response.ok) {
+          await this.saveToken(response.token);
+          resolve(true);
+        } else {
+          this.token = null;
+          this.storage.clear();
+          resolve(false);
+        }
       });
     });
   }
 
   register(dataUser: User) {
     return new Promise((resolve) => {
-      return this.http.post(`${endPointBase}/user/create`, dataUser).subscribe((response: any) => {
-        response.ok ? this.saveToken(response.token) : (this.token = null), this.storage.clear();
+      return this.http.post(`${endPointBase}/user/create`, dataUser).subscribe(async (response: any) => {
+        response.ok ? await this.saveToken(response.token) : (this.token = null), this.storage.clear();
         resolve(response.ok);
       });
     });
@@ -71,10 +78,10 @@ export class UsuarioService {
   }
 
   logout() {
-    this.storage.clear();
-    this.token = "";
+    this.token = null;
     this.user = null;
-    this.navController.navigateRoot("/login");
+    this.storage.clear();
+    this.navController.navigateRoot("/login", { animated: true });
   }
 
   getUsuario() {
@@ -91,5 +98,6 @@ export class UsuarioService {
   async saveToken(token: string) {
     this.token = token;
     await this.storage.set("token", token);
+    await this.validateToken();
   }
 }

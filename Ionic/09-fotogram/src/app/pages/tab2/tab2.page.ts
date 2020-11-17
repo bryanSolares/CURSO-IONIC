@@ -32,6 +32,7 @@ export class Tab2Page {
   async crearPost() {
     await this.postService.createPost(this.post);
     this.post = { message: "", coords: null, position: false };
+    this.tempImages = [];
     this.route.navigateByUrl("/main/tabs/tab1");
   }
 
